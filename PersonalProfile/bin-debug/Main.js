@@ -117,6 +117,8 @@ var Main = (function (_super) {
         this.addChild(icon);
         icon.x = 26;
         icon.y = 33;
+        //var tween = egret.Tween.get(icon);
+        //tween.to({x:100},2000);
         var line = new egret.Shape();
         line.graphics.lineStyle(2, 0xffffff);
         line.graphics.moveTo(0, 0);
@@ -129,7 +131,7 @@ var Main = (function (_super) {
         colorLabel.textColor = 0xffffff;
         colorLabel.width = stageW - 172;
         colorLabel.textAlign = "center";
-        colorLabel.text = "Hello Egret";
+        colorLabel.text = "Hello I am 朱怡宁";
         colorLabel.size = 24;
         colorLabel.x = 172;
         colorLabel.y = 80;
