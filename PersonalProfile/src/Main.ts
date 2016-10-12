@@ -151,10 +151,10 @@ class Main extends egret.DisplayObjectContainer
         topMask.y = 33;
         this.addChild(topMask);
 
-        var icon:egret.Bitmap = this.createBitmapByName("egret_icon_png");
+        var icon:egret.Bitmap = this.createBitmapByName("1_jpg");
         this.addChild(icon);
-        icon.x = 26;
-        icon.y = 33;
+        icon.x = 60;
+        icon.y = 70;
 
         var line = new egret.Shape();
         line.graphics.lineStyle(2,0xffffff);
@@ -190,9 +190,7 @@ class Main extends egret.DisplayObjectContainer
             { text: "老师你好（伸起我的小粗主爪）。喜欢看推理以及科幻类的小说。", style: { "size": 20, "textColor": 0xffffff } },
             { text: "如今专注于三次元，追一下下小明星。平时喜欢画画、看书、看实况（B站喜欢看岚少和C菌）平时还会和别人尬舞！！", style: { "size": 20, "textColor": 0xffffff } },
             { text: "\n特别喜欢角色扮演游戏。入坑作是psp的最终幻想7：降临之子，刷了好多遍。最爱～扎克斯赛高！！", style: { "size": 20, "textColor": 0xffffff } },
-            { text: "然后就一直追着这个系列，零式也打了。没有ps4就看了ff15的试玩动画。心水呀～", style: { "textColor": 0xffffff } },
-            { text: "\n特别喜欢柯南道尔的福尔摩斯和阿婆的无人生还以及东方快车，BBC制造的英剧看的较多。", style: { "textColor": 0xffffff } },
-            { text: "后来在b站混迹，喜欢上岚少那种日式的RPG小游戏，玩了一阵子类似的游戏。（本人胆小，非常害怕恐怖的东西，自己不敢玩就看别人玩啦）", style: { "textColor": 0xffffff } },
+            { text: "\n后来在b站混迹，喜欢上岚少那种日式的RPG小游戏，玩了一阵子类似的游戏。（本人胆小，非常害怕恐怖的东西，自己不敢玩就看别人玩啦）", style: { "textColor": 0xffffff } },
             { text: "\n" },
             { text: "暑假的时候，在好基友家里一起play了守望先锋和血缘诅咒以及看门狗。看门狗真是不行，老追车，玩了会儿就不玩了。毕竟不会开车很痛苦。", style: { "size": 20, "textColor": 0xffffff } },
             { text: "很喜欢血缘的设定和屁股的人设，赞！代入感很强，果断的入坑了。", style: { "size": 20, "textColor": 0xffffff }},
@@ -223,8 +221,8 @@ class Main extends egret.DisplayObjectContainer
         pagemove(Page2);
 
         var topMask1 = new egret.Shape();
-        topMask1.graphics.beginFill(0x000000, 0.5);
-        topMask1.graphics.drawRect(0, 0, stageW, stageH);
+        topMask1.graphics.beginFill(0x000000, 1);
+        topMask1.graphics.drawRect(0, 0, 300, 300);
         topMask1.graphics.endFill();
         topMask1.y = 33;
         Page2.addChild(topMask1);
@@ -236,6 +234,20 @@ class Main extends egret.DisplayObjectContainer
         sky1.width = Page2.stage.stageWidth;
         sky1.height = Page2.stage.stageHeight;
 
+        var text_self2 = new egret.TextField();
+        this.addChild(text_self2);
+        text_self2.textColor = 0xffffff;
+        text_self2.width = 400;
+        text_self2.size = 20;
+        text_self2.lineSpacing = 6;
+        text_self2.x = 200;
+        text_self2.y = 450; 
+        text_self2.bold = false;
+        
+        text_self2.textFlow = <Array<egret.ITextElement>>
+        [
+            { text: "Let us begin!!", style: { "size": 50, "textColor": 0x000000 } },
+        ]
         
 
         function pagemove(p:Page):void
@@ -322,14 +334,14 @@ class Page extends egret.DisplayObjectContainer
         if(this.mouseState)
         {
             this.y = evt.stageY- this.distance.y;
-            if(this.y < -this.stage.stageHeight * 3 / 5)
+            if(this.y < -500)
             {
                 egret.Tween.get(this).to({x:0,y:-1136},400,egret.Ease.sineIn)
                 .wait(300).to({x:0,y:0},100,egret.Ease.sineIn);
                 this.parent.addChildAt(this,0);
                 this.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE,this.mouseMove,this);
             }
-            if(this.y > -this.stage.stageHeight * 3 / 5)
+            if(this.y > 500)
             {  
                 egret.Tween.get(this).to( {x:0,y:-1136},400, egret.Ease.sineIn)
                 .wait(300).to({x:0,y:0},100,egret.Ease.sineIn) ;
@@ -341,11 +353,11 @@ class Page extends egret.DisplayObjectContainer
     public mouseUp(evt:egret.TouchEvent)
     {
         this.mouseState = false;
-        if(this.y >= -this.stage.stageHeight * 3 / 5)
+        if(this.y >= -500)
         {
             egret.Tween.get(this).to({x:0,y:0},300,egret.Ease.sineIn);
         }
-        if(this.y <= this.stage.stageHeight * 3 / 5)
+        if(this.y <= 500)
         {
             egret.Tween.get(this).to({x:0,y:0},300,egret.Ease.sineIn);
         }

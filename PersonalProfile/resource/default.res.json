@@ -1,10 +1,15 @@
 {
 	"groups":[
 	{
-		"keys":"19_jpg,2_jpg,bg_jpg,egret_icon_png,description_json",
+		"keys":"1_jpg,19_jpg,2_jpg,bg_jpg,egret_icon_png,description_json",
 		"name":"preload"
 	}],
 	"resources":[
+	{
+		"name":"1_jpg",
+		"type":"image",
+		"url":"assets/1.jpg"
+	},
 	{
 		"name":"19_jpg",
 		"type":"image",
