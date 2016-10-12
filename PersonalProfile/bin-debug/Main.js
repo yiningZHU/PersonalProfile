@@ -101,12 +101,17 @@ var Main = (function (_super) {
      * Create a game scene
      */
     p.createGameScene = function () {
-        var sky = this.createBitmapByName("bg_jpg");
-        this.addChild(sky);
+        //First Page
+        var Page1 = new Page();
+        this.addChild(Page1);
+        Page1.touchEnabled = true;
+        pagemove(Page1);
+        var Page1_BG = this.createBitmapByName("19_jpg");
+        this.addChild(Page1_BG);
         var stageW = this.stage.stageWidth;
         var stageH = this.stage.stageHeight;
-        sky.width = stageW;
-        sky.height = stageH;
+        Page1_BG.width = stageW;
+        Page1_BG.height = stageH;
         var topMask = new egret.Shape();
         topMask.graphics.beginFill(0x000000, 0.5);
         topMask.graphics.drawRect(0, 0, stageW, 172);
@@ -117,8 +122,6 @@ var Main = (function (_super) {
         this.addChild(icon);
         icon.x = 26;
         icon.y = 33;
-        //var tween = egret.Tween.get(icon);
-        //tween.to({x:100},2000);
         var line = new egret.Shape();
         line.graphics.lineStyle(2, 0xffffff);
         line.graphics.moveTo(0, 0);
@@ -131,11 +134,34 @@ var Main = (function (_super) {
         colorLabel.textColor = 0xffffff;
         colorLabel.width = stageW - 172;
         colorLabel.textAlign = "center";
-        colorLabel.text = "Hello I am 朱怡宁";
-        colorLabel.size = 24;
+        colorLabel.text = "This is Yining Zhu";
+        colorLabel.size = 26;
         colorLabel.x = 172;
         colorLabel.y = 80;
         this.addChild(colorLabel);
+        var text_self = new egret.TextField();
+        this.addChild(text_self);
+        text_self.textColor = 0xffffff;
+        text_self.width = 400;
+        text_self.size = 20;
+        text_self.lineSpacing = 6;
+        text_self.x = 200;
+        text_self.y = 450;
+        text_self.bold = false;
+        text_self.textFlow = [
+            { text: "老师你好（伸起我的小粗主爪）。喜欢看推理以及科幻类的小说。", style: { "size": 20, "textColor": 0xffffff } },
+            { text: "如今专注于三次元，追一下下小明星。平时喜欢画画、看书、看实况（B站喜欢看岚少和C菌）平时还会和别人尬舞！！", style: { "size": 20, "textColor": 0xffffff } },
+            { text: "\n特别喜欢角色扮演游戏。入坑作是psp的最终幻想7：降临之子，刷了好多遍。最爱～扎克斯赛高！！", style: { "size": 20, "textColor": 0xffffff } },
+            { text: "然后就一直追着这个系列，零式也打了。没有ps4就看了ff15的试玩动画。心水呀～", style: { "textColor": 0xffffff } },
+            { text: "\n特别喜欢柯南道尔的福尔摩斯和阿婆的无人生还以及东方快车，BBC制造的英剧看的较多。", style: { "textColor": 0xffffff } },
+            { text: "后来在b站混迹，喜欢上岚少那种日式的RPG小游戏，玩了一阵子类似的游戏。（本人胆小，非常害怕恐怖的东西，自己不敢玩就看别人玩啦）", style: { "textColor": 0xffffff } },
+            { text: "\n" },
+            { text: "暑假的时候，在好基友家里一起play了守望先锋和血缘诅咒以及看门狗。看门狗真是不行，老追车，玩了会儿就不玩了。毕竟不会开车很痛苦。", style: { "size": 20, "textColor": 0xffffff } },
+            { text: "很喜欢血缘的设定和屁股的人设，赞！代入感很强，果断的入坑了。", style: { "size": 20, "textColor": 0xffffff } },
+            { text: "诶～总之喜欢的东西比较杂。\n", style: { "size": 20, "textColor": 0xffffff } },
+            { text: "性格比较开朗、好说话。不是很擅长编程但是觉得很神奇！嗯。。。差不多就这些了 ", style: { "size": 20, "textColor": 0xffffff } },
+            { text: "我会努力跟上老师的脚步的。好好加油（发抖、忐忑）", style: { "size": 20, "textColor": 0xffffff } },
+        ];
         var textfield = new egret.TextField();
         this.addChild(textfield);
         textfield.alpha = 0;
@@ -149,6 +175,27 @@ var Main = (function (_super) {
         //根据name关键字，异步获取一个json配置文件，name属性请参考resources/resource.json配置文件的内容。
         // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json.
         RES.getResAsync("description_json", this.startAnimation, this);
+        //Second Page
+        var Page2 = new Page();
+        this.addChild(Page2);
+        Page2.touchEnabled = true;
+        pagemove(Page2);
+        var topMask1 = new egret.Shape();
+        topMask1.graphics.beginFill(0x000000, 0.5);
+        topMask1.graphics.drawRect(0, 0, stageW, stageH);
+        topMask1.graphics.endFill();
+        topMask1.y = 33;
+        Page2.addChild(topMask1);
+        var sky1 = this.createBitmapByName("2_jpg");
+        Page2.addChild(sky1);
+        Page2.stage.stageWidth = this.stage.stageWidth;
+        Page2.stage.stageHeight = this.stage.stageHeight;
+        sky1.width = Page2.stage.stageWidth;
+        sky1.height = Page2.stage.stageHeight;
+        function pagemove(p) {
+            p.addEventListener(egret.TouchEvent.TOUCH_BEGIN, p.mouseDown, p);
+            p.addEventListener(egret.TouchEvent.TOUCH_END, p.mouseUp, p);
+        }
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
@@ -198,3 +245,51 @@ var Main = (function (_super) {
     return Main;
 }(egret.DisplayObjectContainer));
 egret.registerClass(Main,'Main');
+var Page = (function (_super) {
+    __extends(Page, _super);
+    function Page() {
+        _super.apply(this, arguments);
+        this.mouseState = false;
+        this.distance = new egret.Point();
+    }
+    var d = __define,c=Page,p=c.prototype;
+    p.mouseDown = function (evt) {
+        this.mouseState = true;
+        this.distance.y = evt.stageY - this.y;
+        this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
+    };
+    p.mouseMove = function (evt) {
+        if (this.mouseState) {
+            this.y = evt.stageY - this.distance.y;
+            if (this.y < -this.stage.stageHeight * 3 / 5) {
+                egret.Tween.get(this).to({ x: 0, y: -1136 }, 400, egret.Ease.sineIn)
+                    .wait(300).to({ x: 0, y: 0 }, 100, egret.Ease.sineIn);
+                this.parent.addChildAt(this, 0);
+                this.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
+            }
+            if (this.y > -this.stage.stageHeight * 3 / 5) {
+                egret.Tween.get(this).to({ x: 0, y: -1136 }, 400, egret.Ease.sineIn)
+                    .wait(300).to({ x: 0, y: 0 }, 100, egret.Ease.sineIn);
+                this.parent.addChildAt(this, 0);
+                this.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
+            }
+        }
+    };
+    p.mouseUp = function (evt) {
+        this.mouseState = false;
+        if (this.y >= -this.stage.stageHeight * 3 / 5) {
+            egret.Tween.get(this).to({ x: 0, y: 0 }, 300, egret.Ease.sineIn);
+        }
+        if (this.y <= this.stage.stageHeight * 3 / 5) {
+            egret.Tween.get(this).to({ x: 0, y: 0 }, 300, egret.Ease.sineIn);
+        }
+        this.stage.removeEventListener(egret.TouchEvent.TOUCH_MOVE, this.mouseMove, this);
+    };
+    return Page;
+}(egret.DisplayObjectContainer));
+egret.registerClass(Page,'Page');
+/*class Animation
+{
+    public static Anim_0:number = 0;
+    public static Anim_1:number = 1;
+}*/
